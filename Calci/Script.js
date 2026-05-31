@@ -1,8 +1,3 @@
-function safeMath(expression) {
-    expression = expression.replace(/(\d+(\.\d+)?)%/g, function(match, num) {
-        return "(" + num + "/100)";
-    });
-
 var currentInput = "";
 var justCalculated = false;
 
@@ -48,9 +43,15 @@ function calculate() {
     }
 
     try {
-        var answer = safeMath(currentInput);
+        // Replace % with /100 for percentage
+        var expression = currentInput.replace(/(\d+\.?\d*)%/g, function(match, num) {
+            return "(" + num + "/100)";
+        });
 
-        if (answer == undefined || isNaN(answer)) {
+        // Use Function constructor instead of eval
+        var answer = new Function("return " + expression)();
+
+        if (answer == undefined || isNaN(answer) || !isFinite(answer)) {
             resultDiv.innerText = "Error";
             return;
         }
