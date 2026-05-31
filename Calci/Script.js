@@ -1,3 +1,8 @@
+function safeMath(expression) {
+    expression = expression.replace(/(\d+(\.\d+)?)%/g, function(match, num) {
+        return "(" + num + "/100)";
+    });
+
 var currentInput = "";
 var justCalculated = false;
 
