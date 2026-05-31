@@ -43,7 +43,7 @@ function calculate() {
     }
 
     try {
-        var answer = eval(currentInput);
+        var answer = safeMath(currentInput);
 
         if (answer == undefined || isNaN(answer)) {
             resultDiv.innerText = "Error";
