@@ -53,9 +53,9 @@ if st.button("Analyze"):
 
         st.subheader("Analysis Result")
         if pred == 1:
-            st.error(f"⚠️ Cyberbullying Detected ({confidence}%)")
+            st.error(f"Cyberbullying Detected ({confidence}%)")
         else:
-            st.success(f"✅ Normal Text ({confidence}%)")
+            st.success(f"Normal Text ({confidence}%)")
             
         st.markdown("Sentiment Analysis Score")
         st.info(f"Sentiment Score: {round(sentiment_score, 3)}")
