@@ -1,4 +1,3 @@
-// ===== Navbar scroll shadow =====
 window.addEventListener("scroll", function () {
   var navbar = document.getElementById("navbar");
   if (window.scrollY > 10) {
@@ -8,7 +7,6 @@ window.addEventListener("scroll", function () {
   }
 });
 
-// ===== Hamburger menu =====
 var hamburger = document.getElementById("hamburger");
 var navLinks = document.getElementById("navLinks");
 
@@ -16,7 +14,6 @@ hamburger.addEventListener("click", function () {
   navLinks.classList.toggle("open");
 });
 
-// Close menu on link click
 var links = document.querySelectorAll(".nav-links a");
 links.forEach(function (link) {
   link.addEventListener("click", function () {
@@ -24,7 +21,6 @@ links.forEach(function (link) {
   });
 });
 
-// ===== Smooth scroll =====
 document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
   anchor.addEventListener("click", function (e) {
     var target = document.querySelector(this.getAttribute("href"));
@@ -35,7 +31,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
   });
 });
 
-// ===== Contact form =====
 var form = document.getElementById("contactForm");
 var successMsg = document.getElementById("successMsg");
 
@@ -59,7 +54,6 @@ form.addEventListener("submit", function (e) {
   }, 4000);
 });
 
-// ===== Scroll reveal =====
 var revealEls = document.querySelectorAll(".skill-card, .project-card, .contact-card, .about-grid");
 
 revealEls.forEach(function (el) {
