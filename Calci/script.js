@@ -14,8 +14,7 @@ function appendToDisplay(value) {
         }
         justCalculated = false;
     }
-
-    // Prevent multiple dots in the same number
+    
     if (value == ".") {
         var parts = currentInput.split(/[\+\-\*\/]/);
         var lastPart = parts[parts.length - 1];
@@ -24,7 +23,6 @@ function appendToDisplay(value) {
         }
     }
 
-    // Prevent two operators in a row
     var operators = ["+", "-", "*", "/", "%"];
     var lastChar = currentInput[currentInput.length - 1];
     if (operators.includes(value) && operators.includes(lastChar)) {
@@ -36,7 +34,6 @@ function appendToDisplay(value) {
     resultDiv.innerText = currentInput;
 }
 
-// ===== Safe math parser — no eval, no Function constructor =====
 function calculate() {
     var resultDiv = document.getElementById("result");
     var expressionDiv = document.getElementById("expression");
@@ -46,35 +43,27 @@ function calculate() {
     }
 
     try {
-        // Handle percentage: replace number% with number/100
         var expression = currentInput.replace(/(\d+\.?\d*)%/g, function(match, num) {
             return String(parseFloat(num) / 100);
         });
-
         var answer = parseExpression(expression);
-
         if (answer === null || isNaN(answer) || !isFinite(answer)) {
             resultDiv.innerText = "Error";
             return;
         }
-
         if (answer % 1 !== 0) {
             answer = parseFloat(answer.toFixed(8));
         }
-
         expressionDiv.innerText = currentInput + " =";
         resultDiv.innerText = answer;
         currentInput = answer.toString();
         justCalculated = true;
-
     } catch (e) {
         resultDiv.innerText = "Error";
         expressionDiv.innerText = "";
         currentInput = "";
     }
 }
-
-// ===== Math parser =====
 
 var pos = 0;
 var inputStr = "";
@@ -119,7 +108,6 @@ function parseMulDiv() {
 
 function parseNumber() {
     var start = pos;
-    // Handle negative number at start or after operator
     if (inputStr[pos] == "-") {
         pos++;
     }
@@ -132,7 +120,6 @@ function parseNumber() {
     return parseFloat(numStr);
 }
 
-// ===== Clear =====
 function clearAll() {
     currentInput = "";
     justCalculated = false;
@@ -140,7 +127,6 @@ function clearAll() {
     document.getElementById("expression").innerText = "";
 }
 
-// ===== Delete last =====
 function deleteLast() {
     if (justCalculated == true) {
         clearAll();
@@ -159,7 +145,6 @@ function deleteLast() {
     }
 }
 
-// ===== Keyboard support =====
 document.addEventListener("keydown", function(event) {
     var key = event.key;
     if (key >= "0" && key <= "9") {
